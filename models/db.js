@@ -1,6 +1,6 @@
-const Sequelize = require ("sequelize");
+const Sequelize = require("sequelize");
 
-const sequelize = new Sequelize ("gestor_proyectos", "root", "", {
+const sequelize = new Sequelize("gestor_proyectos", "root", "", {
     host: "localhost",
     dialect: "mariadb"
 });

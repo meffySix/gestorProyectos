@@ -6,7 +6,7 @@ const Tarea = require ("./tareas");
 
 sequelize
     .authenticate()
-    .then (() => {
+    .then(() => {
         console.log("Conexión establecida");
         sequelize.sync({alter: true});
     })
