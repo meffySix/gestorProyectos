@@ -1,6 +1,6 @@
 const express = require ("express");
 const app = express();
-const {Usuario, Rol, Proyecto, Tarea} = require('./models');
+const {Usuario, Rol, Proyecto, Tarea, Intervencion} = require("./models");
 
 
 
