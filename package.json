@@ -1,0 +1,24 @@
+{
+  "name": "gestorproyectos",
+  "version": "1.0.0",
+  "description": "Gestor de Proyectos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DoodToot/gestorProyectos.git"
+  },
+  "author": "Dood",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DoodToot/gestorProyectos/issues"
+  },
+  "homepage": "https://github.com/DoodToot/gestorProyectos#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mariadb": "^2.4.1",
+    "sequelize": "^6.3.0"
+  }
+}
