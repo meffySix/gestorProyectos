@@ -2,20 +2,23 @@
 
 require("dotenv").config();
 const express = require ("express");
-const {Usuario, Rol, Proyecto, Tarea, Intervencion} = require("./models");
-const {login} = require("./controllers/autenticacion");
+// const {Usuario, Rol, Proyecto, Tarea, Intervencion} = require("./models");
 const cookieParser = require("cookie-parser");
 const cookieSession = require("cookie-session");
+
+const {login} = require("./controllers/autenticacion");
+const {dashboard} = require("./controllers/dashboard");
 
 const app = express();
 
 //para poder recibir los links (URL):
 app.use(express.urlencoded({extended: false}));
+
 app.use(cookieParser());
 app.use(cookieSession({
     name: "cookiemonster",
-    keys: ["g3oaksj3FHsbdjskwuidniui34534", "doiamwdioSDIMOIo82o7382ODSJSIO"],
-    maxAge: 5 * 60 * 1000
+    keys: [process.env.KEY1, process.env.KEY2],
+    maxAge: process.env.DURACION_COOKIE * 60 * 1000
 }));
 
 //motor de plantillas: app.set determina el funcionamiento de express
