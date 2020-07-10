@@ -3,6 +3,8 @@
 require("dotenv").config();
 const express = require ("express");
 const {Usuario, Rol, Proyecto, Tarea, Intervencion} = require("./models");
+const {login} = require("./controllers/autenticacion");
+
 const app = express();
 
 //motor de plantillas: app.set determina el funcionamiento de express
