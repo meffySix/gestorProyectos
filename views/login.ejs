@@ -42,7 +42,7 @@
         <div class="form-group">
             <input type="password" name="password" class="form-control" placeholder="Password" required="required">
         </div>
-
+        <!-- Utilizamos (typeof) para no mostrar la alerta si no se envía ningún mensaje -->
         <% if (typeof mensaje !== "undefined") { %>
         <div class="alert alert-danger" role="alert">
             <%= mensaje %>
