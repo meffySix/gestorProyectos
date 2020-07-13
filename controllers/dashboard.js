@@ -1,7 +1,8 @@
 function dashboard(req, res) {
-    // const usuario = req.params;
+    //información de sesión de las cookies (cookie-session):
+    const usuario = req.session.usuario;
     if (usuario) {
-        res.render("/dashboard")
+        res.render("dashboard", {usuario})
     } else {
         res.redirect("/login");   
     }

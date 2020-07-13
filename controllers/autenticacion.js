@@ -1,3 +1,5 @@
+const {Usuario} = require ("../models");
+
 function login(req, res) {
     const {email, password} = req.body;
     Usuario.findOne({where: {email, password}})
@@ -6,7 +8,7 @@ function login(req, res) {
             req.session.usuario = usuario;
             res.redirect("/");
         } else {
-            res.redirect("/login");
+            res.render("login");
         }
     })
 }

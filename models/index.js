@@ -30,5 +30,6 @@ module.exports = {
     Usuario, 
     Rol, 
     Proyecto, 
-    Tarea
+    Tarea, 
+    Intervencion
 }

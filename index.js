@@ -28,8 +28,8 @@ app.set("views", "./views");
 app.set("view engine", "ejs");
 
 //definición de las rutas:
+app.get("/", dashboard);
 app.get("/login", (req, res) => res.render("login"));
 app.post("/login", login);
-app.get("/", )
 
 app.listen(3000);
