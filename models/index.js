@@ -5,15 +5,15 @@ const Proyecto = require("./proyectos");
 const Tarea = require("./tareas");
 const Intervencion = require("./intervencion");
 
-//Definición de las relaciones entre entidades (1-N, N-1 o N-M)
+// Definición de las relaciones entre entidades (1-N, N-1 o N-M)
 Usuario.belongsToMany(Proyecto, {through: "participacione"});
 Proyecto.hasMany(Tarea);
 Tarea.belongsToMany(Usuario, {through: "asignacione"});
-//Para la siguiente relación: en "as" establecemos una asignación para los campos y en "through" añadimos una tabla nuestra
+// Para la siguiente relación: en "as" establecemos una asignación para los campos y en "through" añadimos una tabla nuestra
 Tarea.belongsToMany(Usuario, {as: "intervencione", through: Intervencion});
-Usuario.hasOne(Rol);
+Usuario.belongsTo(Rol);
 Rol.hasMany(Rol, {as: "heredados"});
-//Esto creará nuevas tablas: "participaciones", "asignaciones" e "intervenciones".
+// Esto creará nuevas tablas: "participacione", "asignacione" e "intervencions".
 
 sequelize
     .authenticate()
