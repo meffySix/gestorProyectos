@@ -22,15 +22,25 @@ function controlAcceso(permiso) {
     return function (req, res, next) {
         const usuario = req.session.usuario;
         if (usuario) {
-            Rol.findOne({where: {id = usuario.rolId}})
-            .then(rol => {
+
+            // Rol.findOne({where: {id = usuario.rolId}})
+            // .then(rol => {
                 // si el (permiso) está registrado en la base de datos -> rols -> permisos [indexOf es distinto de -1]
-                if (rol.permisos.indexOf(permiso) != -1) {
-                    next();        
+                // if (rol.permisos.indexOf(permiso) != -1) {
+                    // next();        
+
+            // findByPk -> find by primary key -> buscará un usuario con el id identificado
+            // include: [Rol] hace un join en la tabla Usuarios con la tabla Rol
+            Usuario.findByPk(usuario.id, {
+                include: [Rol]
+            })
+            .then(usuario => {
+                if (usuario && usuario.rol && usuario.rol.permisos && usuario.rol.permisos.indexOf(permiso) != -1) {
+                    next();
                 } else {
                     res.status(403).send("Permiso Denegado");
                 }
-            })
+            })    
         } else {
             res.redirect("/login");
         }

@@ -26,7 +26,8 @@ app.set("views", "./views");
 app.set("view engine", "ejs");
 
 //definición de las rutas:
-app.get("/", controlAcceso(), dashboard);
+//si cumple los requisitos de controlAcceso, la función next() permitirá que pase a dashboard
+app.get("/", controlAcceso("leer_proyectos_y_tareas_asignados"), dashboard);
 app.get("/login", (req, res) => res.render("login"));
 app.post("/login", login);
 

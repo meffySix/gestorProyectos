@@ -1,7 +1,15 @@
+const {Usuario, Tarea} = require("../models");
+
 function dashboard(req, res) {
-    //información de sesión de las cookies (cookie-session):
+    // .session -> información de sesión de las cookies (cookie-session):
     const usuario = req.session.usuario;
-    res.render("dashboard", {usuario})
+    Usuario.findByPk(usuario.id, {
+        include: {model: Tarea, as: "tareas"}
+    })
+    .then(usuario => {
+        const tarea = usuario.tareas;
+        res.render("dashboard", {usuario, tarea})
+    }) 
 }
 
 module.exports = {

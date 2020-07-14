@@ -9,6 +9,8 @@ const Intervencion = require("./intervencion");
 Usuario.belongsToMany(Proyecto, {through: "participacione"});
 Proyecto.hasMany(Tarea);
 Tarea.belongsToMany(Usuario, {through: "asignacione"});
+// para poder comprobar que Tareas pertenecen a un Usuario (ésto no cambiará la arquitectura de la base de datos):
+Usuario.belongsToMany(Tarea, {through: "asignacione"});
 // Para la siguiente relación: en "as" establecemos una asignación para los campos y en "through" añadimos una tabla nuestra
 Tarea.belongsToMany(Usuario, {as: "intervencione", through: Intervencion});
 Usuario.belongsTo(Rol);

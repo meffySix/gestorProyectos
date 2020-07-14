@@ -5,8 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Página de inicio</title>
+    <style>
+        html {
+            margin-left: 5px;
+        }
+        h1 {
+            margin-left: 10px;
+        }
+        th, td {
+            padding: 5px;
+            border: 1px solid black;
+            text-align: center;
+        }
+        th, td {
+            width: 100px;
+            height: 34px;
+        }
+        th {
+            background-color: rgb(196, 196, 196);
+        }
+        tr:nth-child(odd) {
+            background-color: rgb(238, 238, 238);
+        }
+        a {
+            float: left;
+            margin: 20px 0 0 30px;
+            padding: 2px;
+            border: 1px solid rgb(29, 29, 29);
+            color: black;
+        }
+        #return {
+            color: black;
+            text-decoration: none;
+        }
+        #finish {
+            float: left;
+            margin: 20px 15px;
+            padding: 3.5px;
+            border: 1px solid rgb(29, 29, 29);
+            background-color: white;
+        }
+        #return:hover, #finish:hover {
+            background-color: rgb(136, 136, 136);
+            color: white;
+        }
+        #tabla2{
+            float: left;
+            margin-top: 10px;
+        }
+        #error{
+            background-color: rgb(240, 50, 66);
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <h2>Bienvenido, <%= usuario.nombre %></h2>
+    <h3>Tus Tareas</h3>
+    <table>
+        <tr>
+            <th> Tarea </th>
+            <th> Fecha Inicio </th>
+            <th> Fecha Vencimiento </th>
+        </tr>
+    <% for (var i = 0; i < tarea.length; i++) { %>
+        <tr>
+            <td> <!-- <a href="/tarea/:<%= tarea[i].id %>"> --> <%= tarea[i].nombre %> </a> </td> 
+            <td> <%=tarea[i].fecha_inicio %> </td>
+            <td> <%=tarea[i].fecha_vencimiento %> </td>
+        </tr>
+    <% } %>
+    </table>
 </body>
 </html>
