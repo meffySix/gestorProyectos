@@ -31,7 +31,8 @@ app.set("view engine", "ejs");
 app.get("/", controlAcceso("leer_proyectos_y_tareas_asignados"), dashboard);
 app.get("/login", (req, res) => res.render("login"));
 app.post("/login", login);
+
 app.get("/tareas/:id", mostrarTarea);
-app.post("", registrarAccionTarea);
+app.post("/tareas/:id", registrarAccionTarea);
 
 app.listen(3000);
