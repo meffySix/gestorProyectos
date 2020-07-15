@@ -22,8 +22,46 @@ function mostrarTarea(req, res) {
     })
 }
 
-
+function registrarAccionTarea(req, res) {
+    // params recoge los parámetros de la petición (dirrección...):
+    const id = req.params.id;
+    const {accion} = req.body;
+    Tarea.findByPk(id, {include: [Usuario]})
+    // async se utiliza para suplantar el .then por un await antes de los datos recogidos:
+    .then(async tarea => {
+        const usuario = await Usuario.findByPk(req.session.usuario.id)
+        if (accion == "start") {
+            await Intervencion.create({usuarioId: usuario.id, tareaId: tarea.id, inicio: new Date()})
+        }
+        else if (accion == "stop") {
+            const intervencion = await Intervencion.findOne({
+                where: {usuarioId: usuario.id, tareaId: tarea.id, fin: null}
+            })
+            intervencion.fin = new Date();
+            await intervencion.save();
+        }
+        else if (accion == "terminar") {
+            const intervencion = await Intervencion.findOne({
+                where: {usuarioId: usuario.id, tareaId: tarea.id, fin: null}
+            })
+            if (intervencion) {
+                intervencion.fin = new Date();
+                await intervencion.save();
+            }
+            tarea.fecha_fin = new Date();
+        }
+        return await tarea.save();
+    })
+    .then(() => {
+        res.redirect("/tareas/" + id)
+    })
+    .catch(err => {
+        console.error(err);
+        res.status(400).send(err.message)
+    })
+}
 
 module.exports = {
-    mostrarTarea
+    mostrarTarea, 
+    registrarAccionTarea
 }

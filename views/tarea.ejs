@@ -21,11 +21,11 @@
     <% } else { %>
         <form action="<%= tarea.link %>" method="POST">
             <% if (!tarea.iniciada) { %>
-                <button name="accion" value="start">Iniciar Reloj</button>
+                <button name="accion" type="submit" value="start">Iniciar Reloj</button>
             <% } else { %>
-                <button name="accion" value="stop">Detener Reloj</button>
+                <button name="accion" type="submit" value="stop">Detener Reloj</button>
             <% } %>
-            <button name="accion" value="terminar">Terminar Tarea</button>
+            <button name="accion" type="submit" value="terminar">Terminar Tarea</button>
         </form>
     <% } %>
 </body>
