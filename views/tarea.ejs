@@ -8,7 +8,7 @@
     <title>Tarea</title>
 </head>
 <body>
-    <h1>Tarea <%= tarea.id %>: "<%= tarea.nombre%>"</h1>
+    <h1>Tarea <%= tarea.id %>: "<%= tarea.nombre %>"</h1>
     <h2> <span> <%= tarea.estado %></span> </h2>
     <p>Fecha de inicio: <%= tarea.fecha_inicio %></p>
 
@@ -20,7 +20,7 @@
         <p>Fecha de Finalización: <%= tarea.fecha_fin %></p>
     <% } else { %>
         <form action="<%= tarea.link %>" method="POST">
-            <% if (!tarea.iniciada) { &>
+            <% if (!tarea.iniciada) { %>
                 <button name="accion" value="start">Iniciar Reloj</button>
             <% } else { %>
                 <button name="accion" value="stop">Detener Reloj</button>
