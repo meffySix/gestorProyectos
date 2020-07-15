@@ -1,0 +1,32 @@
+<!-- Mostrar una plantilla donde podamos iniciar un reloj, detener un reloj o terminar -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tarea</title>
+</head>
+<body>
+    <h1>Tarea <%= tarea.id %>: "<%= tarea.nombre%>"</h1>
+    <h2> <span> <%= tarea.estado %></span> </h2>
+    <p>Fecha de inicio: <%= tarea.fecha_inicio %></p>
+
+    <% if (tarea.fecha_vencimiento) { %>
+        <p>Fecha de Vencimiento: <%= tarea.fecha_vencimiento %></p>
+    <% } %>
+
+    <% if (tarea.fecha_fin) { %>
+        <p>Fecha de Finalización: <%= tarea.fecha_fin %></p>
+    <% } else { %>
+        <form action="<%= tarea.link %>" method="POST">
+            <% if (!tarea.iniciada) { &>
+                <button name="accion" value="start">Iniciar Reloj</button>
+            <% } else { %>
+                <button name="accion" value="stop">Detener Reloj</button>
+            <% } %>
+            <button name="accion" value="terminar">Terminar Tarea</button>
+        </form>
+    <% } %>
+</body>
+</html>
