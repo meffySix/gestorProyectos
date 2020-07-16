@@ -7,6 +7,7 @@ const cookieSession = require("cookie-session");
 const {login, controlAcceso} = require("./controllers/autenticacion");
 const {dashboard} = require("./controllers/dashboard");
 const {mostrarTarea, registrarAccionTarea} = require("./controllers/tareas");
+const {crearProyecto, leerProyecto, leerProyectos, modificarProyecto, eliminarProyecto} = require("./api/proyectos");
 
 const app = express();
 
@@ -26,6 +27,8 @@ app.set("views", "./views");
 //qué motor de plantillas se va a utilizar:
 app.set("view engine", "ejs");
 
+app.use(express.json());
+
 //definición de las rutas:
 //si cumple los requisitos de controlAcceso, la función next() permitirá que pase a dashboard
 app.get("/", controlAcceso("leer_proyectos_y_tareas_asignados"), dashboard);
@@ -34,5 +37,11 @@ app.post("/login", login);
 
 app.get("/tareas/:id", mostrarTarea);
 app.post("/tareas/:id", registrarAccionTarea);
+
+app.get("/api/proyectos", leerProyectos);
+app.get("/api/proyectos/:id", leerProyecto);
+app.post("/api/proyectos", crearProyecto);
+app.put("/api/proyectos/:id", modificarProyecto);
+app.delete("/api/proyectos/:id", eliminarProyecto);
 
 app.listen(3000);
