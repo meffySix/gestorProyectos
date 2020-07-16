@@ -7,6 +7,7 @@ const Intervencion = require("./intervencion");
 
 // Definición de las relaciones entre entidades (1-N, N-1 o N-M)
 Usuario.belongsToMany(Proyecto, {through: "participacione"});
+Proyecto.belongsToMany(Usuario, {through: "participacione", as: "participantes"});
 Proyecto.hasMany(Tarea);
 Tarea.belongsToMany(Usuario, {through: "asignacione"});
 // para poder comprobar que Tareas pertenecen a un Usuario (ésto no cambiará la arquitectura de la base de datos):

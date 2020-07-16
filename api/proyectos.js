@@ -1,4 +1,4 @@
-const {Proyecto} = require("../models");
+const {Proyecto, Usuario, Tarea} = require("../models");
 
 // POST
 function crearProyecto(req, res) {
@@ -8,7 +8,7 @@ function crearProyecto(req, res) {
         res.status(201).json(nuevoProyecto)
     })
     .catch(err => {
-        res.status(400).json(err.errors)
+        res.status(400).json(err.message)
     })
 }
 
@@ -19,14 +19,16 @@ function leerProyectos(req, res) {
         res.json(proyectos);
     })
     .catch(err => {
-        res.status(400).json(err.errors)
+        res.status(400).json(err.message)
     })
 }
 
 // GET
 function leerProyecto(req, res) {
-    const {id} = req.params;
-    Proyecto.findOne({where: {id}})
+    const id = req.params.id;
+    Proyecto.findByPk(id, {
+        include: ["participantes", Tarea]
+    })
     .then(proyecto => {
         if(proyecto) {
             res.json(proyecto);
@@ -35,7 +37,7 @@ function leerProyecto(req, res) {
         }
     })
     .catch(err => {
-        res.status(400).json(err.errors)
+        res.status(400).json(err.message)
     })
 }
 
@@ -54,7 +56,7 @@ function modificarProyecto(req, res) {
         }
     })
     .catch(err => {
-        res.status(400).json(err.errors)
+        res.status(400).json(err.message)
     })
 }
 
@@ -65,13 +67,13 @@ function eliminarProyecto(req, res) {
     .then(proyectoParaEliminar => {
         if(proyectoParaEliminar) {
             proyectoParaEliminar.destroy()
-            .then(() => res.status(204).json("Eliminado con éxito"))
+            .then(() => res.status(204).json())
         } else {
             res.status(404).json("Este proyecto no existe");
         }
     })
-    .catch.catch(err => {
-        res.status(400).json(err.errors)
+    .catch(err => {
+        res.status(400).json(err.message)
     })
 }
 
