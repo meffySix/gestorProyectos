@@ -4,7 +4,8 @@
   "description": "Gestor de Proyectos",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "jsdoc": "jsdoc -d docs -r api controllers models"
   },
   "repository": {
     "type": "git",
@@ -26,5 +27,8 @@
     "md5": "^2.2.1",
     "moment": "^2.27.0",
     "sequelize": "^6.3.0"
+  },
+  "devDependencies": {
+    "jsdoc": "^3.6.5"
   }
 }
