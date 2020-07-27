@@ -1,6 +1,12 @@
 const {Proyecto, Usuario, Tarea} = require("../models");
 
 // POST
+
+/**
+ * Función de la API para crear proyecto.
+ * @param {*} req Petición con los datos del proyecto a crear.
+ * @param {*} res Respuesta en formato JSON y código HTTP.
+ */
 function crearProyecto(req, res) {
     const proyecto = req.body;
     Proyecto.create(proyecto)
