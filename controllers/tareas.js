@@ -1,6 +1,20 @@
 const { Tarea, Intervencion, Usuario } = require("../models");
 const moment = require("moment");
 
+/**
+ * Controlador para mostrar la información de una tarea en concreto.
+ * La información de la tarea se obtiene mediante una consulta de datos
+ * con todas las intervenciones asociadas a dicha tarea.
+ * 
+ * La consulta trabaja de forma asíncrona, de tal modo que los datos de la tarea
+ * se obtienen en una promesa.
+ * 
+ * Los datos obtenidos de la consulta se visualizan en la vista (tarea.ejs).
+ * 
+ * @param {*} req Petición, que contiene el parámetro del ID de la tarea. 
+ * @param {*} res Respuesta.
+ */
+
 function mostrarTarea(req, res) {
     const id = req.params.id;
     // intervencione viene de la relación establecida en el index.js (as: "intervencione"):
