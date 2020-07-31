@@ -4,7 +4,8 @@
   "description": "Gestor de Proyectos",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "test": "mocha",
     "jsdoc": "jsdoc -d docs -r api controllers models"
   },
   "repository": {
@@ -29,6 +30,9 @@
     "sequelize": "^6.3.0"
   },
   "devDependencies": {
-    "jsdoc": "^3.6.5"
+    "chromedriver": "^84.0.1",
+    "jsdoc": "^3.6.5",
+    "mocha": "^8.1.0",
+    "selenium-webdriver": "^4.0.0-alpha.7"
   }
 }
