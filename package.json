@@ -4,7 +4,7 @@
   "description": "Gestor de Proyectos",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon",
     "test": "mocha",
     "jsdoc": "jsdoc -d docs -r api controllers models"
   },
