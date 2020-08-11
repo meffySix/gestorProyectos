@@ -1,4 +1,4 @@
-const { Usuario } = require("../models")
+const { Usuario } = require("../models");
 
 // POST
 function crearUsuario(req, res) {
