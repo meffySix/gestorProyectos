@@ -3,6 +3,7 @@ const express = require ("express");
 // const {Usuario, Rol, Proyecto, Tarea, Intervencion} = require("./models");
 const cookieParser = require("cookie-parser");
 const cookieSession = require("cookie-session");
+const cors = require("cors");
 
 const {login, controlAcceso} = require("./controllers/autenticacion");
 const {dashboard} = require("./controllers/dashboard");
@@ -12,25 +13,26 @@ const { leerTareas, leerTarea, crearTarea, modificarTarea, eliminarTarea } = req
 const { leerUsuarios, leerUsuario, crearUsuario, modificarUsuario, eliminarUsuario } = require("./api/usuarios");
 const { leerRoles, leerRol, crearRol, modificarRol, eliminarRol } = require("./api/roles");
 
-const app = express();
+const app = express()
 
 //para poder recibir los links (URL):
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({extended: false}))
+app.use(cors())
 
-app.use(cookieParser());
+app.use(cookieParser())
 app.use(cookieSession({
     name: "cookiemonster",
     keys: [process.env.KEY1, process.env.KEY2],
     maxAge: process.env.DURACION_COOKIE * 60 * 1000
-}));
+}))
 
 //motor de plantillas: app.set determina el funcionamiento de express
 //en qué carpeta están las plantillas de las vistas:
-app.set("views", "./views");
+app.set("views", "./views")
 //qué motor de plantillas se va a utilizar:
-app.set("view engine", "ejs");
+app.set("view engine", "ejs")
 
-app.use(express.json());
+app.use(express.json())
 
 //definición de las rutas:
 //si cumple los requisitos de controlAcceso, la función next() permitirá que pase a dashboard
